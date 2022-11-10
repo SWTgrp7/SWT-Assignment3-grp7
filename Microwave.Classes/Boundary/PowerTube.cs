@@ -1,6 +1,8 @@
 ﻿using System;
 using Microwave.Classes.Interfaces;
 
+//power feature
+
 namespace Microwave.Classes.Boundary
 {
     public class PowerTube : IPowerTube
