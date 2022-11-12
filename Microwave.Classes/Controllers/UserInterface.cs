@@ -56,11 +56,13 @@ namespace Microwave.Classes.Controllers
             {
                 case States.READY:
                     myDisplay.ShowPower(powerLevel);
+                    myBuzzer.BuzzOnButtonPress();
                     myState = States.SETPOWER;
                     break;
                 case States.SETPOWER:
                     powerLevel = (powerLevel >= 700 ? 50 : powerLevel+50);
                     myDisplay.ShowPower(powerLevel);
+                    myBuzzer.BuzzOnButtonPress();
                     break;
             }
         }
@@ -71,11 +73,13 @@ namespace Microwave.Classes.Controllers
             {
                 case States.SETPOWER:
                     myDisplay.ShowTime(time, 0);
+                    myBuzzer.BuzzOnButtonPress();
                     myState = States.SETTIME;
                     break;
                 case States.SETTIME:
                     time += 1;
                     myDisplay.ShowTime(time, 0);
+                    myBuzzer.BuzzOnButtonPress();
                     break;
             }
         }
@@ -87,11 +91,13 @@ namespace Microwave.Classes.Controllers
                 case States.SETPOWER:
                     ResetValues();
                     myDisplay.Clear();
+                    myBuzzer.BuzzOnButtonPress();
                     myState = States.READY;
                     break;
                 case States.SETTIME:
                     myLight.TurnOn();
                     myCooker.StartCooking(powerLevel, time*60);
+                    myBuzzer.BuzzOnButtonPress();
                     myState = States.COOKING;
                     break;
                 case States.COOKING:
@@ -99,6 +105,7 @@ namespace Microwave.Classes.Controllers
                     myCooker.Stop();
                     myLight.TurnOff();
                     myDisplay.Clear();
+                    myBuzzer.BuzzOnButtonPress();
                     myState = States.READY;
                     break;
             }
