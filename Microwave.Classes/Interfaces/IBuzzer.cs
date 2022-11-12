@@ -8,5 +8,7 @@ namespace Microwave.Classes.Interfaces
 {
     internal interface IBuzzer
     {
+        void BuzzOnCookingDone();
+        void BuzzOnButtonPress();
     }
 }
