@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Microwave.Classes.Interfaces
 {
-    internal interface IBuzzer
+    public interface IBuzzer
     {
         void BuzzOnCookingDone();
         void BuzzOnButtonPress();
