@@ -54,5 +54,11 @@ namespace Microwave.Classes.Boundary
             }
         }
 
+        // Method to add a set amount of time to the TimeRemaining property - extend cooking time 
+        public void AddTime()
+        {
+            TimeRemaining += 10;
+        }
+
     }
 }

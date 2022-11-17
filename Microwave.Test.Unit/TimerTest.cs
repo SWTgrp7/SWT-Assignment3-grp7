@@ -147,5 +147,8 @@ namespace Microwave.Test.Unit
 
             Assert.That(uut.TimeRemaining, Is.EqualTo(5-ticks*1));
         }
+
+
+        // New tests for the added timer features
     }
 }
