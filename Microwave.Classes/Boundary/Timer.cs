@@ -60,5 +60,23 @@ namespace Microwave.Classes.Boundary
             TimeRemaining += 10;
         }
 
+        //In case functionality is implemented - method to remove 10 sec from the cooking time 
+        //Should be called when the retract time button is pressed
+        public void RemoveTime()
+        {
+            // If timeRemaining is less than 10 sec, then the cooking should stop. 
+
+            if(TimeRemaining < 10)
+            {
+                timer.Enabled = false;
+                Expired?.Invoke(this, System.EventArgs.Empty);
+            }
+            else
+            {
+                TimeRemaining -= 10;
+            }
+            
+        }
+
     }
 }

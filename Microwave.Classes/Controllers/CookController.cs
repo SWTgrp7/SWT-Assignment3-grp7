@@ -61,6 +61,7 @@ namespace Microwave.Classes.Controllers
             }
         }
 
+        // This method is called every second -> To update the display with cooking time
         public void OnTimerTick(object sender, EventArgs e)
         {
             if (isCooking)
