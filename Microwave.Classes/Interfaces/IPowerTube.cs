@@ -13,5 +13,6 @@ namespace Microwave.Classes.Interfaces
         void TurnOff();
 
         int GetMaxPowerInWatts();
+        void SetMaxPowerInWatts(int maxPowerInWatts);
     }
 }
