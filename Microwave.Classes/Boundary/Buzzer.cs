@@ -6,6 +6,11 @@ namespace Microwave.Classes.Boundary
     {
         private IOutput output;
 
+        public Buzzer(IOutput output)
+        {
+            this.output = output;
+        }
+
         public void BuzzOnButtonPress()
         {
             output.OutputLine("Buzzer sound: Beep!");
@@ -14,7 +19,7 @@ namespace Microwave.Classes.Boundary
         public void BuzzOnCookingDone()
         {
             output.OutputLine(
-                "Buzzer sound: Beep!...Beep!...Beep!");
+                "Buzzer sound: Beeeep!...Beeeep!...Beeeep!");
         }
     }
 }
