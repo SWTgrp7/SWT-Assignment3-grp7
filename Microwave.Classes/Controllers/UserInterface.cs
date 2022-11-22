@@ -56,7 +56,7 @@ namespace Microwave.Classes.Controllers
                     myState = States.SETPOWER;
                     break;
                 case States.SETPOWER:
-                    powerLevel = (powerLevel >= myCooker.GetMaxPowerInWatts() ? 50 : powerLevel+50);
+                    powerLevel = (powerLevel < myCooker.GetMaxPowerInWatts() ? powerLevel+50 : 50);
                     myDisplay.ShowPower(powerLevel);
                     break;
             }
