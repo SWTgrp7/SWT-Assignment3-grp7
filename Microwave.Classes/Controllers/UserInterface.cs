@@ -24,6 +24,7 @@ namespace Microwave.Classes.Controllers
             IButton powerButton,
             IButton timeButton,
             IButton startCancelButton,
+            IButton subtractTimeButton,
             IDoor door,
             IDisplay display,
             ILight light,
@@ -32,6 +33,7 @@ namespace Microwave.Classes.Controllers
             powerButton.Pressed += new EventHandler(OnPowerPressed);
             timeButton.Pressed += new EventHandler(OnTimePressed);
             startCancelButton.Pressed += new EventHandler(OnStartCancelPressed);
+            subtractTimeButton.Pressed += new EventHandler(OnSubtractTimePressed);
 
             door.Closed += new EventHandler(OnDoorClosed);
             door.Opened += new EventHandler(OnDoorOpened);
@@ -155,6 +157,16 @@ namespace Microwave.Classes.Controllers
                     myLight.TurnOff();
                     // Beep 3 times
                     myState = States.READY;
+                    break;
+            }
+        }
+
+        public void OnSubtractTimePressed(object sender, EventArgs e)
+        {
+            switch (myState)
+            {
+                case States.COOKING:
+                    myCooker.SubtractTime();
                     break;
             }
         }
