@@ -42,6 +42,7 @@ namespace Microwave.App
 
             // The simple sequence should now run
 
+
             System.Console.WriteLine("When you press enter, the program will stop");
             // Wait for input
 
