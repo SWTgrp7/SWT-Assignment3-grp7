@@ -1,6 +1,8 @@
 ﻿using System;
 using Microwave.Classes.Interfaces;
 
+//power feature
+
 namespace Microwave.Classes.Boundary
 {
     public class PowerTube : IPowerTube
@@ -9,6 +11,8 @@ namespace Microwave.Classes.Boundary
 
         private bool IsOn = false;
 
+        private int MaxPowerInWatts { get; set; } = 700;
+
         public PowerTube(IOutput output)
         {
             myOutput = output;
@@ -16,9 +20,9 @@ namespace Microwave.Classes.Boundary
 
         public void TurnOn(int power)
         {
-            if (power < 1 || 700 < power)
+            if (power < 1 || MaxPowerInWatts < power)
             {
-                throw new ArgumentOutOfRangeException("power", power, "Must be between 1 and 700 (incl.)");
+                throw new ArgumentOutOfRangeException("power", power, $"Must be between 1 and {MaxPowerInWatts}  (incl.)");
             }
 
             if (IsOn)
@@ -39,5 +43,18 @@ namespace Microwave.Classes.Boundary
 
             IsOn = false;
         }
+
+        public int GetMaxPowerInWatts()
+        {
+            return MaxPowerInWatts;
+        }
+
+        public void SetMaxPowerInWatts(int maxPowerInWatts)
+        {
+            if (maxPowerInWatts < 1 || 2400 < maxPowerInWatts)
+                throw new ArgumentOutOfRangeException("power", MaxPowerInWatts, $"Must be between 1 and 2400  (incl.)");
+            MaxPowerInWatts = maxPowerInWatts;
+        }
+       
     }
 }
