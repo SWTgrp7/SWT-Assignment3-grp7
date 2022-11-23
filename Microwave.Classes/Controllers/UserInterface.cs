@@ -62,6 +62,7 @@ namespace Microwave.Classes.Controllers
             }
         }
 
+        //Adding new case - if the timer button is pressed during cooking, add 10 sec to cooking time
         public void OnTimePressed(object sender, EventArgs e)
         {
             switch (myState)
@@ -73,6 +74,9 @@ namespace Microwave.Classes.Controllers
                 case States.SETTIME:
                     time += 1;
                     myDisplay.ShowTime(time, 0);
+                    break;
+                case States.COOKING:
+                    myCooker.AddTime();
                     break;
             }
         }

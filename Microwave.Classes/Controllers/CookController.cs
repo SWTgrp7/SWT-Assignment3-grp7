@@ -70,5 +70,11 @@ namespace Microwave.Classes.Controllers
                 myDisplay.ShowTime(remaining / 60, remaining % 60);
             }
         }
+
+        // Method to call AddTime in Timer class
+        public void AddTime()
+        {
+            myTimer.AddTime();
+        }
     }
 }
