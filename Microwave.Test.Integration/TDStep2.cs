@@ -35,8 +35,6 @@ namespace Microwave.Test.Integration
             startCancelButton = new Button();
 
             powerTube = Substitute.For<IPowerTube>();
-            powerTube.SetMaxPowerInWatts(1000);
-            powerTube.GetMaxPowerInWatts().Returns(1000);
             timer = Substitute.For<ITimer>();
             output = Substitute.For<IOutput>();
 
@@ -186,7 +184,7 @@ namespace Microwave.Test.Integration
             powerButton.Press();
             timeButton.Press();
             startCancelButton.Press();
-            
+
             // Cooking has started
             // Can be verified by powertube
             powerTube.Received().TurnOn(100);

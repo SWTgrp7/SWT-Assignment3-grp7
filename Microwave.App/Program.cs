@@ -20,8 +20,6 @@ namespace Microwave.App
 
             PowerTube powerTube = new PowerTube(output);
 
-            powerTube.SetMaxPowerInWatts(700);
-
             Light light = new Light(output);
 
             Microwave.Classes.Boundary.Timer timer = new Timer();

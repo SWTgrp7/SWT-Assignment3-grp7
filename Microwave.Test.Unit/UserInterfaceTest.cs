@@ -32,8 +32,7 @@ namespace Microwave.Test.Unit
             light = Substitute.For<ILight>();
             display = Substitute.For<IDisplay>();
             cooker = Substitute.For<ICookController>();
-            cooker.GetMaxPowerInWatts().Returns(1000);
-        
+
             uut = new UserInterface(
                 powerButton, timeButton, startCancelButton,
                 door,
@@ -76,33 +75,25 @@ namespace Microwave.Test.Unit
         [Test]
         public void Ready_2PowerButton_PowerIs100()
         {
-            cooker.GetMaxPowerInWatts().Returns(1000);
-            // This test that uut has subscribed to power button, and works correctly
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             display.Received(1).ShowPower(Arg.Is<int>(100));
         }
 
-        [TestCase(500)]
-        [TestCase(700)]
-        [TestCase(1000)]
-        public void Ready_xPowerButton_PowerIs500_700_1000(int maxpower)
+        [Test]
+        public void Ready_14PowerButton_PowerIs700()
         {
-            cooker.GetMaxPowerInWatts().Returns(maxpower);
-            for (int i = 1; i <= (maxpower/50); i++)
+            for (int i = 1; i <= 14; i++)
             {
                 powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             }
-            display.Received(1).ShowPower(Arg.Is<int>(maxpower));
+            display.Received(1).ShowPower(Arg.Is<int>(700));
         }
 
-        [TestCase(500)]
-        [TestCase(700)]
-        [TestCase(1000)]
-        public void Ready_15PowerButton_PowerIs50Again(int maxpower)
+        [Test]
+        public void Ready_15PowerButton_PowerIs50Again()
         {
-            cooker.GetMaxPowerInWatts().Returns(maxpower);
-            for (int i = 1; i <= (maxpower/50)+1; i++)
+            for (int i = 1; i <= 15; i++)
             {
                 powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             }
@@ -205,7 +196,6 @@ namespace Microwave.Test.Unit
         [Test]
         public void Ready_PowerAndTime_CookerIsCalledCorrectly()
         {
-           
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             // Now in SetPower
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
@@ -220,16 +210,10 @@ namespace Microwave.Test.Unit
             cooker.Received(1).StartCooking(100, 120);
         }
 
-        [TestCase(500)]
-        [TestCase(600)]
-        [TestCase(700)]
-        [TestCase(800)]
-        public void Ready_FullPower_CookerIsCalledCorrectly(int MaxP)
+        [Test]
+        public void Ready_FullPower_CookerIsCalledCorrectly()
         {
-            int maxTestPower = MaxP;
-            cooker.GetMaxPowerInWatts().Returns(maxTestPower);
-            
-            for (int i = 50; i <= maxTestPower; i += 50)
+            for (int i = 50; i <= 700; i += 50)
             {
                 powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             }
@@ -240,7 +224,7 @@ namespace Microwave.Test.Unit
             // Should call with correct values
             startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-            cooker.Received(1).StartCooking(MaxP, 60);
+            cooker.Received(1).StartCooking(700, 60);
 
         }
 

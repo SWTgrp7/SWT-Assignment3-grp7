@@ -82,15 +82,6 @@ namespace Microwave.Test.Unit
 
             powerTube.Received().TurnOff();
         }
-        
-        [TestCase(100)]
-        public void Cooker_TjeckMaxPower(int maxPower)
-        {
-            powerTube.GetMaxPowerInWatts().Returns(maxPower);
-
-            Assert.That(uut.GetMaxPowerInWatts(), Is.EqualTo(maxPower));
-
-        }
 
     }
 }
