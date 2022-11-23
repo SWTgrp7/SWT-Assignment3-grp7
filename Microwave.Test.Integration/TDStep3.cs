@@ -37,6 +37,7 @@ namespace Microwave.Test.Integration
             powerButton = new Button();
             timeButton = new Button();
             startCancelButton = new Button();
+            subtractTimeButton = new Button();
 
             output = Substitute.For<IOutput>();
 
@@ -147,6 +148,7 @@ namespace Microwave.Test.Integration
             powerButton = new Button();
             timeButton = new Button();
             startCancelButton = new Button();
+
 
             output = Substitute.For<IOutput>();
 

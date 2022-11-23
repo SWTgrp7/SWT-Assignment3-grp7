@@ -34,6 +34,7 @@ namespace Microwave.Test.Integration
             powerButton = new Button();
             timeButton = new Button();
             startCancelButton = new Button();
+            subtractTimeButton = new Button();
 
             powerTube = Substitute.For<IPowerTube>();
             timer = Substitute.For<ITimer>();

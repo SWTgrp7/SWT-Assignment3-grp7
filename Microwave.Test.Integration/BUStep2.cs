@@ -37,6 +37,7 @@ namespace Microwave.Test.Integration
             powerButton = Substitute.For<IButton>();
             timeButton = Substitute.For<IButton>();
             startCancelButton = Substitute.For<IButton>();
+            subtractTimeButton = Substitute.For<IButton>();
 
             door = Substitute.For<IDoor>();
 
