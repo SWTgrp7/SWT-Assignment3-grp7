@@ -86,6 +86,7 @@ namespace Microwave.Classes.Controllers
                     break;
                 case States.COOKING:
                     myCooker.AddTime();
+                    myBuzzer.BuzzOnButtonPress();
                     break;
             }
         }
@@ -177,6 +178,7 @@ namespace Microwave.Classes.Controllers
             {
                 case States.COOKING:
                     myCooker.SubtractTime();
+                    myBuzzer.BuzzOnButtonPress();
                     break;
             }
         }
