@@ -15,6 +15,7 @@ namespace Microwave.Test.Integration
         private Button powerButton;
         private Button timeButton;
         private Button startCancelButton;
+        private Button subtractTimeButton;
 
         private UserInterface ui;
 
@@ -34,6 +35,7 @@ namespace Microwave.Test.Integration
             powerButton = new Button();
             timeButton = new Button();
             startCancelButton = new Button();
+            subtractTimeButton = new Button();
 
             powerTube = Substitute.For<IPowerTube>();
             powerTube.SetMaxPowerInWatts(1000);
@@ -47,7 +49,7 @@ namespace Microwave.Test.Integration
 
             cooker = new CookController(timer, display, powerTube);
 
-            ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, buzzer, light, cooker);
+            ui = new UserInterface(powerButton, timeButton, startCancelButton, subtractTimeButton, door, display, buzzer, light, cooker);
             cooker.UI = ui;
         }
 

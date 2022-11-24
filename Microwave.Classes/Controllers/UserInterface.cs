@@ -25,6 +25,7 @@ namespace Microwave.Classes.Controllers
             IButton powerButton,
             IButton timeButton,
             IButton startCancelButton,
+            IButton subtractTimeButton,
             IDoor door,
             IDisplay display,
             IBuzzer buzzer,
@@ -34,6 +35,7 @@ namespace Microwave.Classes.Controllers
             powerButton.Pressed += new EventHandler(OnPowerPressed);
             timeButton.Pressed += new EventHandler(OnTimePressed);
             startCancelButton.Pressed += new EventHandler(OnStartCancelPressed);
+            subtractTimeButton.Pressed += new EventHandler(OnSubtractTimePressed);
 
             door.Closed += new EventHandler(OnDoorClosed);
             door.Opened += new EventHandler(OnDoorOpened);
@@ -67,6 +69,7 @@ namespace Microwave.Classes.Controllers
             }
         }
 
+        //Adding new case - if the timer button is pressed during cooking, add 10 sec to cooking time
         public void OnTimePressed(object sender, EventArgs e)
         {
             switch (myState)
@@ -80,6 +83,9 @@ namespace Microwave.Classes.Controllers
                     time += 1;
                     myDisplay.ShowTime(time, 0);
                     myBuzzer.BuzzOnButtonPress();
+                    break;
+                case States.COOKING:
+                    myCooker.AddTime();
                     break;
             }
         }
@@ -161,6 +167,16 @@ namespace Microwave.Classes.Controllers
                     myLight.TurnOff();
                     myBuzzer.BuzzOnCookingDone();
                     myState = States.READY;
+                    break;
+            }
+        }
+
+        public void OnSubtractTimePressed(object sender, EventArgs e)
+        {
+            switch (myState)
+            {
+                case States.COOKING:
+                    myCooker.SubtractTime();
                     break;
             }
         }

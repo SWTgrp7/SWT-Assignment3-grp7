@@ -61,6 +61,7 @@ namespace Microwave.Classes.Controllers
             }
         }
 
+        // This method is called every second -> To update the display with cooking time
         public void OnTimerTick(object sender, EventArgs e)
         {
             if (isCooking)
@@ -68,6 +69,17 @@ namespace Microwave.Classes.Controllers
                 int remaining = myTimer.TimeRemaining;
                 myDisplay.ShowTime(remaining / 60, remaining % 60);
             }
+        }
+
+        // Method to call AddTime in Timer class
+        public void AddTime()
+        {
+            myTimer.AddTime();
+        }
+
+        public void SubtractTime()
+        {
+            myTimer.RemoveTime();
         }
         
         public int GetMaxPowerInWatts(){

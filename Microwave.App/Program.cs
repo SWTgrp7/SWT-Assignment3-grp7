@@ -11,6 +11,7 @@ namespace Microwave.App
             Button startCancelButton = new Button();
             Button powerButton = new Button();
             Button timeButton = new Button();
+            Button subtractTime = new Button();
 
             Door door = new Door();
 
@@ -30,7 +31,7 @@ namespace Microwave.App
 
             CookController cooker = new CookController(timer, display, powerTube);
 
-            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, buzzer, light, cooker);
+            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, subtractTime, door, display, buzzer, light, cooker);
 
             // Finish the double association
             cooker.UI = ui;
@@ -44,6 +45,7 @@ namespace Microwave.App
             startCancelButton.Press();
 
             // The simple sequence should now run
+
 
             System.Console.WriteLine("When you press enter, the program will stop");
             // Wait for input

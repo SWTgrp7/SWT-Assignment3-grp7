@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using NSubstitute;
 using NUnit.Framework;
 using Timer = Microwave.Classes.Boundary.Timer;
 
@@ -146,6 +147,46 @@ namespace Microwave.Test.Unit
             pause.WaitOne(ticks * 1000 + 100);
 
             Assert.That(uut.TimeRemaining, Is.EqualTo(5-ticks*1));
+        }
+
+
+        // New tests for the added timer features
+
+
+        [TestCase(1)]
+        [TestCase(10)]
+        [TestCase(25)]
+        public void AddTime_TimeRemainingCorrect(int startTime)
+        {
+            uut.Start(startTime);
+            uut.AddTime();
+            Assert.That(uut.TimeRemaining, Is.EqualTo(startTime+10));
+        }
+
+        [Test]
+        public void RemoveTime_LessThan10sec_TimeRemainingCorrect()
+        {
+            // Must test that the method raises the Expired event
+            int eventTriggered = 0;
+            uut.Expired += (sender, args) => eventTriggered++;
+
+            uut.Start(5);
+            uut.RemoveTime();
+
+            Assert.That(eventTriggered, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void RemoveTime_MoreThan10sec_TimeRemainingCorrect()
+        {
+            // Must test that the method does not rais the Expired event
+            int eventTriggered = 0;
+            uut.Expired += (sender, args) => eventTriggered++;
+
+            uut.Start(15);
+            uut.RemoveTime();
+
+            Assert.That(eventTriggered, Is.EqualTo(0));
         }
     }
 }

@@ -92,5 +92,23 @@ namespace Microwave.Test.Unit
 
         }
 
+        [Test]
+        public void Cooking_Start_AddTime()
+        {
+            uut.StartCooking(50, 60);
+            uut.AddTime();
+
+            timer.Received().AddTime();
+        }
+
+        [Test]
+        public void Cooking_Start_SubtractTime()
+        {
+            uut.StartCooking(50, 60);
+            uut.SubtractTime();
+
+            timer.Received().RemoveTime();
+        }
+
     }
 }
