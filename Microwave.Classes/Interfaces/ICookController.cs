@@ -13,5 +13,7 @@ namespace Microwave.Classes.Interfaces
 
         void AddTime();
         void SubtractTime();
+
+        int GetMaxPowerInWatts();
     }
 }

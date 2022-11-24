@@ -81,5 +81,9 @@ namespace Microwave.Classes.Controllers
         {
             myTimer.RemoveTime();
         }
+        
+        public int GetMaxPowerInWatts(){
+            return myPowerTube.GetMaxPowerInWatts();
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace Microwave.Test.Integration
 
         private Light light;
         private Display display;
+        private Buzzer buzzer;
         private CookController cooker;
 
         private IPowerTube powerTube;
@@ -37,15 +38,18 @@ namespace Microwave.Test.Integration
             subtractTimeButton = new Button();
 
             powerTube = Substitute.For<IPowerTube>();
+            powerTube.SetMaxPowerInWatts(1000);
+            powerTube.GetMaxPowerInWatts().Returns(1000);
             timer = Substitute.For<ITimer>();
             output = Substitute.For<IOutput>();
 
             light = new Light(output);
             display = new Display(output);
+            buzzer = new Buzzer(output);
 
             cooker = new CookController(timer, display, powerTube);
 
-            ui = new UserInterface(powerButton, timeButton, startCancelButton, subtractTimeButton, door, display, light, cooker);
+            ui = new UserInterface(powerButton, timeButton, startCancelButton, subtractTimeButton, door, display, buzzer, light, cooker);
             cooker.UI = ui;
         }
 
@@ -186,7 +190,7 @@ namespace Microwave.Test.Integration
             powerButton.Press();
             timeButton.Press();
             startCancelButton.Press();
-
+            
             // Cooking has started
             // Can be verified by powertube
             powerTube.Received().TurnOn(100);
