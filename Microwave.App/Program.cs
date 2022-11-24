@@ -18,6 +18,8 @@ namespace Microwave.App
 
             Display display = new Display(output);
 
+            Buzzer buzzer = new Buzzer(output);
+
             PowerTube powerTube = new PowerTube(output);
 
             powerTube.SetMaxPowerInWatts(700);
@@ -28,7 +30,7 @@ namespace Microwave.App
 
             CookController cooker = new CookController(timer, display, powerTube);
 
-            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker);
+            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, buzzer, light, cooker);
 
             // Finish the double association
             cooker.UI = ui;
